@@ -15,20 +15,28 @@ Special emphasis was placed on database schema design, layered backend architect
 
 The platform supports three user roles: administrator, host, and renter, each with clearly defined permissions.
 
+
+
+### Technologies Used
+
+| Layer | Technologies |
+| --- | --- |
+| Backend | FastAPI, MySQL, SQLAlchemy |
+| Frontend | Vue.js 3, Pinia |
+| Auth & Security | JWT |
+| Recomendations | Matrix Factorization |
+
+
+### Key Features
+
+- **Property Management:** Search, filter, and manage properties with booking workflows.
+- **User Features:** Role-based access control, JWT authentication, messaging system, and personalized recommendations.
+
+
+
 ## Database Design
-The relational schema was designed in MySQL Workbench and implemented in MySQL. Core entities include:
+The relational schema was designed in MySQL Workbench and implemented in MySQL. The database schema (shown below) covers core entities such as Users, Properties, Bookings, Ratings, Messages, and Property Views.
 
-- Users and roles
-
-- Properties
-
-- Bookings
-
-- Ratings
-
-- Messages
-
-- Property views
 
   <img src="docs/images/Database.png" width="75%" />
 
@@ -90,9 +98,22 @@ Model parameters are optimized using gradient descent to minimize reconstruction
 
 This component integrates concepts from linear algebra and numerical optimization into the backend workflow.
 
+### Example Recommendation Output
  <img src="docs/images/Recomendations.png" width="75%" />
 
 ## Running the Application
+
+### 1. Database Setup
+
+- Create a MySQL database.
+- Import or generate the schema using the provided model.
+- Configure database credentials in the `.env` file inside the backend directory.
+
+```
+cd backend
+python seeder.py
+```
+
 
 ### Backend
 
@@ -102,7 +123,9 @@ pip install -r requirements.txt
 cp .env.example .env
 uvicorn main:app --reload
 ```
-Configure database credentials inside .env before running.
+
+The backend API will run at: http://127.0.0.1:8000
+
 
 ### Frontend
 ```
@@ -110,4 +133,4 @@ cd frontend
 npm install
 npm run dev
 ```
-The frontend connects to the backend running locally.
+The frontend connects to the backend running locally at http://127.0.0.1:3000
