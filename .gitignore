@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+backend/.env
+
+# Node
+node_modules/
+dist/
+
+# Certificates
+*.key
+*.pem
+*.csr
+
+# OS
+.DS_Store
+

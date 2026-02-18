@@ -1,0 +1,50 @@
+autoactivation true
+activecolor #EEEEEE
+lifelinestyle #grey:1
+title Insert diagram
+
+actor user
+boundary router
+
+participantgroup Controller layer
+control api.py
+control "Role controller" as controller
+end
+
+participantgroup Model layer
+control "Database session" as session
+database "MySQL" as database
+end
+
+user->router: POST /role/create { role_name="bla"}
+
+box over router: find method with\n annotation @router.get("/roles/list")
+box over router: inject request
+box over router: inject session
+box over router: inject controller (depends)
+
+router->api.py: createRole(request,session, controller)
+
+api.py->controller: create(request)
+
+box over controller: convert pyndatic to alchemy object
+
+controller->session: query(Role).add()
+
+group implicit
+box over session: convert query to SQL
+session->database: SQL
+database-->session: result set
+box over session: convert set to object list (auto)
+end
+
+session-->controller: ok
+controller-->api.py: success
+
+api.py-->router: success
+
+box over router: convert objects to JSON
+
+router-->user: JSON
+
+

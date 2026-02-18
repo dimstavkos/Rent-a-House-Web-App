@@ -1,0 +1,46 @@
+autoactivation true
+activecolor #EEEEEE
+lifelinestyle #grey:1
+
+title List diagram
+
+actor user
+boundary router
+
+participantgroup Controller layer
+control api.py
+control "Role controller" as controller
+end
+
+participantgroup Model layer
+control "Database session" as session
+database "MySQL" as database
+end
+
+user->router: GET /roles/list
+
+box over router: find method with\n annotation @router.get("/roles/list")
+box over router: inject session
+box over router: inject controller (depends)
+
+router->api.py: findRole(session, controller)
+
+api.py->controller: list()
+
+controller->session: query(Role).all()
+
+group implicit
+box over session: convert query to SQL
+session->database: SQL
+database-->session: result set
+box over session: convert set to object list (auto)
+end
+
+session-->controller: alchemy objects
+controller-->api.py: alchemy objects
+
+api.py-->router: alchemy objects
+
+box over router: convert objects to JSON
+
+router-->user: JSON
