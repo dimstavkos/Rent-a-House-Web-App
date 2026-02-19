@@ -118,7 +118,7 @@ cp .env.example .env
 uvicorn main:app --reload
 ```
 
-The backend API runs locally at: http://127.0.0.1:8000
+The backend API runs locally at: `http://127.0.0.1:8000`
 
 
 ### Frontend
