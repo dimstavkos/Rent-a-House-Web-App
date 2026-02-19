@@ -1,4 +1,5 @@
 # Rent-a-House - A Web Application for Property Rentals
+The project was developed as part of a university course with a focus on applying practical software engineering principles.
 ## Overview
 
 This project implements a full-stack web application for property rentals, inspired by modern accommodation platforms. The system enables users to act as hosts or renters, supporting property management, booking workflows, secure authentication, messaging, and personalized recommendations.
@@ -24,7 +25,7 @@ The platform supports three user roles: administrator, host, and renter, each wi
 | Backend | FastAPI, MySQL, SQLAlchemy |
 | Frontend | Vue.js 3, Pinia |
 | Auth & Security | JWT |
-| Recomendations | Matrix Factorization |
+| Recomendation System | Matrix Factorization |
 
 
 ### Key Features
@@ -55,8 +56,6 @@ The main layers include:
 - Controller layer (business logic)
 
 - Model layer (database interaction via SQLAlchemy)
-
-Authentication is implemented using JWT-based token validation. Protected endpoints enforce both authentication and role-based authorization.
 
 Pydantic schemas are used to validate and serialize responses, preventing uncontrolled exposure of database objects.
 
@@ -98,7 +97,7 @@ Model parameters are optimized using gradient descent to minimize reconstruction
 
 This component integrates concepts from linear algebra and numerical optimization into the backend workflow.
 
-### Example Recommendation Output
+
  <img src="docs/images/Recomendations.png" width="75%" />
 
 ## Running the Application
@@ -133,4 +132,4 @@ cd frontend
 npm install
 npm run dev
 ```
-The frontend connects to the backend running locally at http://127.0.0.1:3000
+The frontend runs locally and communicates with the backend API.
